@@ -1,6 +1,10 @@
 # Hidden Digital Clock SMart Shelving
 A DIY, 3d Printed, Arduino powered, time-telling, shelving project.
 
+Originally made by [DIYMachines](https://www.youtube.com/channel/UC3jc4X-kEq-dEDYhQ8QoYnQ)
+
+Edited by Techsider to match 24h Time to only use 4 Pixels per Segment and a non shelf format.
+
 ==========
 
 List of items used in this project and where to find them (the links are Amazon affiliate links and help to support this channel at no cost to you):

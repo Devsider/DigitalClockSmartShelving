@@ -1,33 +1,12 @@
-/*
- * 3D printed smart shelving with a giant hidden digital clock in the front edges of the shelves - DIY Machines
+
+/* 
+3D printed smart shelving with a giant hidden digital clock in the front edges of the shelves - DIY Machines
 
 ==========
 
-More info and build instructions: https://www.youtube.com/watch?v=8E0SeycTzHw
+Edited by Techsider
 
-3D printed parts can be downloaded from here: https://www.thingiverse.com/thing:4207524
-
-You will need to install the Adafruit Neopixel library which can be found in the library manager.
-
-This project also uses the handy DS3231 Simple library:- https://github.com/sleemanj/DS3231_Simple   Please follow the instruction on installing this provided on the libraries page
-
-Before you install this code you need to set the time on your DS3231. Once you have connected it as shown in this project and have installed the DS3231_Simple library (see above) you
- to go to  'File' >> 'Examples' >> 'DS3231_Simple' >> 'Z1_TimeAndDate' >> 'SetDateTime' and follow the instructions in the example to set the date and time on your RTC
-
-==========
-
-
- * SAY THANKS:
-
-Buy me a coffee to say thanks: https://ko-fi.com/diymachines
-Support us on Patreon: https://www.patreon.com/diymachines
-
-SUBSCRIBE:
-■ https://www.youtube.com/channel/UC3jc4X-kEq-dEDYhQ8QoYnQ?sub_confirmation=1
-
-INSTAGRAM: https://www.instagram.com/diy_machines/?hl=en
-FACEBOOK: https://www.facebook.com/diymachines/
-
+Works with 24h Time, 4x 7 Segment Displays (4 Leds each)
 */
 
 
@@ -45,16 +24,16 @@ DS3231_Simple Clock;
 DateTime MyDateAndTime;
 
 // Which pin on the Arduino is connected to the NeoPixels?
-#define LEDCLOCK_PIN    6
+#define LEDCLOCK_PIN    3
 #define LEDDOWNLIGHT_PIN    5
 
 // How many NeoPixels are attached to the Arduino?
-#define LEDCLOCK_COUNT 216
+#define LEDCLOCK_COUNT 200
 #define LEDDOWNLIGHT_COUNT 12
 
   //(red * 65536) + (green * 256) + blue ->for 32-bit merged colour value so 16777215 equals white
 int clockMinuteColour = 51200; //1677
-int clockHourColour = 140000000; //7712
+int clockHourColour =  140000000; //7712
 
 int clockFaceBrightness = 0;
 
@@ -93,7 +72,7 @@ void setup() {
 
   stripDownlighter.begin();           // INITIALIZE NeoPixel stripClock object (REQUIRED)
   stripDownlighter.show();            // Turn OFF all pixels ASAP
-  stripDownlighter.setBrightness(50); // Set BRIGHTNESS (max = 255)
+  stripDownlighter.setBrightness(255); // Set BRIGHTNESS (max = 255)
 
   //smoothing
     // initialize all the readings to 0:
@@ -110,9 +89,6 @@ void loop() {
 
   //display the time on the LEDs
   displayTheTime();
-
-
-
 
   //Record a reading from the light sensor and add it to the array
   readings[readIndex] = analogRead(A0); //get an average light level from previouse set of samples
@@ -153,7 +129,7 @@ void loop() {
   stripDownlighter.fill(16777215, 0, LEDDOWNLIGHT_COUNT);
   stripDownlighter.show();
 
-  delay(5000);   //this 5 second delay to slow things down during testing
+  delay(1000);   //this 5 second delay to slow things down during testing
 
 }
 
@@ -180,40 +156,18 @@ void displayTheTime(){
   int firstMinuteDigit = MyDateAndTime.Minute % 10; //work out the value of the first digit and then display it
   displayNumber(firstMinuteDigit, 0, clockMinuteColour);
 
-  
+
   int secondMinuteDigit = floor(MyDateAndTime.Minute / 10); //work out the value for the second digit and then display it
-  displayNumber(secondMinuteDigit, 63, clockMinuteColour);  
+  displayNumber(secondMinuteDigit, 28, clockMinuteColour);  
+
+  int firstHourDigit = MyDateAndTime.Hour  % 10; //work out the value for the third digit and then display it
+  displayNumber(firstHourDigit, 56, clockHourColour);
 
 
-  int firstHourDigit = MyDateAndTime.Hour; //work out the value for the third digit and then display it
-  if (firstHourDigit > 12){
-    firstHourDigit = firstHourDigit - 12;
-  }
- 
- // Comment out the following three lines if you want midnight to be shown as 12:00 instead of 0:00
-//  if (firstHourDigit == 0){
-//    firstHourDigit = 12;
-//  }
- 
-  firstHourDigit = firstHourDigit % 10;
-  displayNumber(firstHourDigit, 126, clockHourColour);
+  int secondHourDigit = floor(MyDateAndTime.Hour / 10); //work out the value for the fourth digit and then display it
+  displayNumber(secondHourDigit, 84, clockHourColour);   
 
-
-  int secondHourDigit = MyDateAndTime.Hour; //work out the value for the fourth digit and then display it
-
-// Comment out the following three lines if you want midnight to be shwon as 12:00 instead of 0:00
-//  if (secondHourDigit == 0){
-//    secondHourDigit = 12;
-//  }
- 
- if (secondHourDigit > 12){
-    secondHourDigit = secondHourDigit - 12;
-  }
-    if (secondHourDigit > 9){
-      stripClock.fill(clockHourColour,189, 18); 
-    }
-
-  }
+}
 
 
 void displayNumber(int digitToDisplay, int offsetBy, int colourToUse){

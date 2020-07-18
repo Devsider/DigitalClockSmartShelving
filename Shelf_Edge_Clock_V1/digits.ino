@@ -1,46 +1,46 @@
 void digitZero(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 27);
-    stripClock.fill(colour, (36 + offset), 27);
+    stripClock.fill(colour, (0 + offset), 12);
+    stripClock.fill(colour, (16 + offset), 12);
 }
 
 void digitOne(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 9);
-    stripClock.fill(colour, (36 + offset), 9);
+    stripClock.fill(colour, (0 + offset), 4);
+    stripClock.fill(colour, (16 + offset), 4);
 }
 
 void digitTwo(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 18);
-    stripClock.fill(colour, (27 + offset), 9);
-    stripClock.fill(colour, (45 + offset), 18);
+    stripClock.fill(colour, (0 + offset), 8);
+    stripClock.fill(colour, (12 + offset), 4);
+    stripClock.fill(colour, (20+ offset), 8);
 }
 
 void digitThree(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 18);
-    stripClock.fill(colour, (27 + offset), 27);
+    stripClock.fill(colour, (0 + offset), 8);
+    stripClock.fill(colour, (12 + offset), 12);
 }
 
 void digitFour(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 9);
-    stripClock.fill(colour, (18 + offset), 27);
+    stripClock.fill(colour, (0 + offset), 4);
+    stripClock.fill(colour, (8 + offset), 12);
 }
 
 void digitFive(int offset, int colour){
-    stripClock.fill(colour, (9 + offset), 45);
+    stripClock.fill(colour, (4 + offset), 20);
 }
 
 void digitSix(int offset, int colour){
-    stripClock.fill(colour, (9 + offset), 54);
+    stripClock.fill(colour, (4 + offset), 24);
 }
 
 void digitSeven(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 18);
-    stripClock.fill(colour, (36 + offset), 9);
+    stripClock.fill(colour, (0 + offset), 8);
+    stripClock.fill(colour, (16 + offset), 4);
 }
 
 void digitEight(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 63);
+    stripClock.fill(colour, (0 + offset), 28);
 }
 
 void digitNine(int offset, int colour){
-    stripClock.fill(colour, (0 + offset), 45);
+    stripClock.fill(colour, (0 + offset), 20);
 }
